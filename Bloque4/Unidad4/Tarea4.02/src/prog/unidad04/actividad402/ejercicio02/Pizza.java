@@ -58,19 +58,24 @@ public class Pizza {
   private static final double COSTE_TAMANYO_FAMILIAR = 7.5;
   
   /**
-   * Coste de los ingredientes de la pizza  margarita
+   * Coste por ingrediente
    */
-  private static final double COSTE_TIPO_MARGARITA = 2;
+  private static final double COSTE_POR_INGREDIENTE = 1;
   
   /**
-   * Coste de los ingredientes de la pizza cuatro quesos
+   * Número de ingredientes de la pizza  margarita
    */
-  private static final double COSTE_TIPO_CUATRO_QUESOS = 4;
+  private static final int INGREDIENTES_MARGARITA = 2;
+  
+  /**
+   * Número de ingredientes de la pizza cuatro quesos
+   */
+  private static final int INGREDIENTES_CUATRO_QUESOS = 4;
 
   /**
-   * Coste de los ingredientes de la pizza funghi
+   * Número de ingredientes de la pizza funghi
    */
-  private static final double COSTE_TIPO_FUNGHI = 3;
+  private static final int INGREDIENTES_FUNGHI = 3;
   
   
   //Atributos estáticos
@@ -185,11 +190,11 @@ public class Pizza {
     
     // Luego sumamos en función de los ingredientes de la pizza
     if(tipo.equals(TIPO_MARGARITA))
-      costeTotal += COSTE_TIPO_MARGARITA;
+      costeTotal += INGREDIENTES_MARGARITA * COSTE_POR_INGREDIENTE;
     else if (tipo.equals(TIPO_FUNGHI))
-      costeTotal += COSTE_TIPO_FUNGHI;
+      costeTotal += INGREDIENTES_FUNGHI * COSTE_POR_INGREDIENTE;
     else
-      costeTotal += COSTE_TIPO_CUATRO_QUESOS;
+      costeTotal += INGREDIENTES_CUATRO_QUESOS * COSTE_POR_INGREDIENTE;
     
     // Devolvemos el resultado
     return costeTotal;

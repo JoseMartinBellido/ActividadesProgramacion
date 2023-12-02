@@ -61,6 +61,16 @@ public class Persona {
    * Constante para el cálculo de la letra del DNI
    */
   private static final String LETRAS_DNI = "TRWAGMYFPDXBNJZSQVHLCKE";
+  
+  /**
+   * IMC mínimo para un peso normal
+   */
+  private static final double IMC_MINIMO = 20;
+  
+  /**
+   * IMC máximo para un peso normal
+   */
+  private static final double IMC_MAXIMO = 25;
       
   // Atributos de clase
   /**
@@ -107,10 +117,10 @@ public class Persona {
    */
   public Persona () {
     nombre = "";
-    edad = 0;
-    sexo = 'M';
-    peso = 0;
-    altura = 0;
+    edad = EDAD_MINIMO;
+    sexo = SEXO_MUJER;
+    peso = PESO_MINIMO;
+    altura = ALTURA_MINIMO;
     generarDNI();
   }
 
@@ -185,9 +195,9 @@ public class Persona {
     //Obtenemos el IMC y con él contemplamos casos
     double imc = getIMC();
     
-    if (imc < 20)
+    if (imc < IMC_MINIMO)
       esCorrecto = -1;
-    else if (imc > 25)
+    else if (imc > IMC_MAXIMO)
       esCorrecto = 1;
     
     return esCorrecto;

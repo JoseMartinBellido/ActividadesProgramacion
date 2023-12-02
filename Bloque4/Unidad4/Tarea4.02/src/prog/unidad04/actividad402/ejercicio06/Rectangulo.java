@@ -35,8 +35,8 @@ public class Rectangulo {
   public double perimetro() {
     Punto verticeComplementario = calculaVerticeComplementario(verticeInicial,verticeOpuesto);
     
-    double base = calculaLado(verticeInicial, verticeComplementario);
-    double altura = calculaLado(verticeComplementario, verticeOpuesto);
+    double base = calculaLado(verticeInicial.getX(), verticeComplementario.getX());
+    double altura = calculaLado(verticeComplementario.getY(), verticeOpuesto.getY());
     
     double perimetro = base * 2 + altura * 2;
     return perimetro;
@@ -49,8 +49,8 @@ public class Rectangulo {
   public double area() {
     Punto verticeComplementario = calculaVerticeComplementario(verticeInicial,verticeOpuesto);
     
-    double base = calculaLado(verticeInicial, verticeComplementario);
-    double altura = calculaLado(verticeComplementario, verticeOpuesto);
+    double base = calculaLado(verticeInicial.getX(), verticeComplementario.getX());
+    double altura = calculaLado(verticeComplementario.getY(), verticeOpuesto.getY());
     
     double area = base * altura;
     return area;
@@ -64,20 +64,16 @@ public class Rectangulo {
     
     Punto verticeComplementario = calculaVerticeComplementario(verticeInicial,verticeOpuesto);
     
-    double base = calculaLado(verticeInicial, verticeComplementario);
-    double altura = calculaLado(verticeComplementario, verticeOpuesto);
+    double base = calculaLado(verticeInicial.getX(), verticeComplementario.getX());
+    double altura = calculaLado(verticeComplementario.getY(), verticeOpuesto.getY());
     
-    if (base == altura)
-      return true;
-    else
-      return false;
-    
+    return base == altura;
   }
   
   // Método para simplificar el cálculo de lados
-  private double calculaLado(Punto punto1, Punto punto2) {
+  private double calculaLado(double coordenada1, double coordenada2) {
     
-    return Math.sqrt (Math.pow (punto2.getX() - punto1.getX(), 2) + Math.pow (punto2.getY() - punto1.getY(), 2));
+    return Math.abs(coordenada1 - coordenada2);
   }
   
   // Método para calcular el vértice complementario

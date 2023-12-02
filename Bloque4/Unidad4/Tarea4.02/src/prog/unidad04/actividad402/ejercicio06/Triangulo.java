@@ -43,8 +43,7 @@ public class Triangulo {
     double lado3 = calculaLado(vertice3, vertice1);
     
     // Calculamos y devolvemos el perímetro
-    double perimetro = lado1 + lado2 + lado3;
-    return perimetro;
+    return lado1 + lado2 + lado3;
   }
   
   /**
@@ -59,9 +58,7 @@ public class Triangulo {
     
     double semiperimetro = (lado1 + lado2 + lado3) / 2;
     
-    double area = Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3));
-    
-    return area;
+    return Math.sqrt(semiperimetro * (semiperimetro - lado1) * (semiperimetro - lado2) * (semiperimetro - lado3));
   }
   
   // Método para simplificar el cálculo de lados

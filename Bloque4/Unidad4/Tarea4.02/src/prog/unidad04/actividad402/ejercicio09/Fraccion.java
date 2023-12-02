@@ -45,8 +45,8 @@ public class Fraccion {
     
     // Ponemos el mismo denominador multiplicándolos y sumamos
     
-    int num = numerador * fraccion.getDenominador() + fraccion.getNumerador() * denominador;
-    int den = denominador * fraccion.getDenominador();
+    int num = numerador * fraccion.denominador + fraccion.numerador * denominador;
+    int den = denominador * fraccion.denominador;
     
     return new Fraccion(num, den);
   }
@@ -64,8 +64,8 @@ public class Fraccion {
     
     // Ponemos el mismo denominador multiplicándolos y restamos
     
-    int num = numerador * fraccion.getDenominador() - fraccion.getNumerador() * denominador;
-    int den = denominador * fraccion.getDenominador();
+    int num = numerador * fraccion.denominador - fraccion.numerador * denominador;
+    int den = denominador * fraccion.denominador;
     
     return new Fraccion(num, den);
     
@@ -80,8 +80,8 @@ public class Fraccion {
     
     // Multiplicamos las fracciones en línea
     
-    int num = numerador * fraccion.getNumerador();
-    int den = denominador * fraccion.getDenominador();
+    int num = numerador * fraccion.numerador;
+    int den = denominador * fraccion.denominador;
     
     return new Fraccion(num,den);
   }
@@ -95,8 +95,8 @@ public class Fraccion {
     
     // Multiplicamos las fracciones en cruz
     
-    int num = numerador * fraccion.getDenominador();
-    int den = denominador * fraccion.getNumerador();
+    int num = numerador * fraccion.denominador;
+    int den = denominador * fraccion.numerador;
     
     return new Fraccion(num,den);
     
@@ -139,7 +139,7 @@ public class Fraccion {
       denominador = Math.abs(denominador);
     }
 
-  }
+  } 
 
   // Getters
   

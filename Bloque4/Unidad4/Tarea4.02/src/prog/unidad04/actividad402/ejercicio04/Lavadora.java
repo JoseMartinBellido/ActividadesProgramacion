@@ -40,6 +40,34 @@ public class Lavadora {
   private static final char CONSUMO_E = 'E';
   private static final char CONSUMO_F = 'F';
   
+  // Precios debidos al consumo
+  
+  private static final double PRECIO_CONSUMO_A = 100;
+  private static final double PRECIO_CONSUMO_B = 80;
+  private static final double PRECIO_CONSUMO_C = 60;
+  private static final double PRECIO_CONSUMO_D = 50;
+  private static final double PRECIO_CONSUMO_E = 30;
+  private static final double PRECIO_CONSUMO_F = 10;
+  
+  // Tramos y precios para el peso
+  private static final double PESO_TRAMO_1 = 20;
+  private static final double PESO_TRAMO_2 = 50;
+  private static final double PESO_TRAMO_3 = 80;
+  private static final double PRECIO_PESO_TRAMO_1 = 10;
+  private static final double PRECIO_PESO_TRAMO_2 = 50;
+  private static final double PRECIO_PESO_TRAMO_3 = 80;
+  private static final double PRECIO_PESO_TRAMO_4 = 100;
+  
+  // Limite de carga y el plus de precio 
+  private static final double LIMITE_CARGA = 30;
+  private static final double PRECIO_EXCESO_CARGA = 50;
+  
+  // Valores por defecto
+  private static final double DEFECTO_PRECIO_BASE = 200;
+  private static final String DEFECTO_COLOR = COLOR_BLANCO;
+  private static final char DEFECTO_CONSUMO_ENERGETICO = CONSUMO_F;
+  private static final double DEFECTO_PESO = 15;
+  private static final double DEFECTO_CARGA = 5;
   
   
   // ------------------------------ Bloque de atributos ------------------------------
@@ -80,11 +108,11 @@ public class Lavadora {
    * Carga: 5kg
    */
   public Lavadora() {
-    precioBase = 200;
-    color = COLOR_BLANCO;
-    consumoEnergetico = CONSUMO_F;
-    peso = 15;
-    carga = 5;
+    precioBase = DEFECTO_PRECIO_BASE;
+    color = DEFECTO_COLOR;
+    consumoEnergetico = DEFECTO_CONSUMO_ENERGETICO;
+    peso = DEFECTO_PESO;
+    carga = DEFECTO_CARGA;
         
   }
   
@@ -193,31 +221,31 @@ public class Lavadora {
     
     // Sumamos un extra dependiendo del consumo energético
     if (consumoEnergetico == CONSUMO_A)
-      precioFinal += 100;
+      precioFinal += PRECIO_CONSUMO_A;
     else if (consumoEnergetico == CONSUMO_B)
-      precioFinal += 80;
+      precioFinal += PRECIO_CONSUMO_B;
     else if (consumoEnergetico == CONSUMO_C)
-      precioFinal += 60;
+      precioFinal += PRECIO_CONSUMO_C;
     else if (consumoEnergetico == CONSUMO_D)
-      precioFinal += 50;
+      precioFinal += PRECIO_CONSUMO_D;
     else if (consumoEnergetico == CONSUMO_E)
-      precioFinal += 30;
+      precioFinal += PRECIO_CONSUMO_E;
     else 
-      precioFinal += 10;
+      precioFinal += PRECIO_CONSUMO_F;
     
     // Sumamos un extra dependiendo del peso de la lavadora
-    if (peso < 20)
-      precioFinal += 10;
-    else if (peso < 50)
-      precioFinal += 50;
-    else if (peso < 80)
-      precioFinal += 80;
+    if (peso < PESO_TRAMO_1)
+      precioFinal += PRECIO_PESO_TRAMO_1;
+    else if (peso < PESO_TRAMO_2)
+      precioFinal += PRECIO_PESO_TRAMO_2;
+    else if (peso < PESO_TRAMO_3)
+      precioFinal += PRECIO_PESO_TRAMO_3;
     else
-      precioFinal += 100;
+      precioFinal += PRECIO_PESO_TRAMO_4;
     
     // Sumamos un extra dependiendo de la carga de la lavadora
-    if (carga > 30)
-      precioFinal += 50;
+    if (carga > LIMITE_CARGA)
+      precioFinal += PRECIO_EXCESO_CARGA;
     
     // Devolvemos el precio final
     return precioFinal;

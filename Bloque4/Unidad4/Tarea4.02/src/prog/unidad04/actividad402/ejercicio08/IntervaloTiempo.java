@@ -28,15 +28,16 @@ public class IntervaloTiempo {
    * @param segundos Los segundos del intervalo. Debe ser un número entre 0 y 59. Su valor por defecto es 0.
    */
   public IntervaloTiempo(int horas, int minutos, int segundos) {
+      
+    // Almacenamos en los segundos el módulo de dividir los segundos entre 60
+    this.segundos = segundos % 60;
+    // Sumamos a los minutos los que nos pasemos de 60 segundos
+    minutos += segundos / 60;
     
-    if (horas < 0) {
-      horas = 0;
-      System.out.println("El número de horas no puede ser menor que cero. Se pondrá cero por defecto.");
-    }
-    
+    // Realizamos la misma operación con los minutos
+    this.minutos = minutos % 60;
+    horas += minutos / 60;
     this.horas = horas;
-    this.minutos = compruebaMinutosSegundos(minutos);
-    this.segundos = compruebaMinutosSegundos(segundos);
   }
   
   
@@ -48,7 +49,10 @@ public class IntervaloTiempo {
    * @return Cadena de caractéres con formato "AAh BBm CCs".
    */
   public String obtenerCadena() {
-    return horas + "h " + minutos + "m " + segundos + "s";
+    if (this != null)
+      return horas + "h " + minutos + "m " + segundos + "s";
+    else
+      return "Este intervalo de tiempo no puede imprimirse";
   }
   
   /**
@@ -57,96 +61,46 @@ public class IntervaloTiempo {
    * @return Un nuevo intervalo de tiempo que sea la suma de los dos anteriores.
    */
   public IntervaloTiempo suma(IntervaloTiempo intervalo) {
-        
-    // Con esta variable contamos si "nos llevamos una" en la suma 
-    int contadorCuenta = 0;
     
-    // Sumamos los segundos
-    int segundos = this.segundos + intervalo.getSegundos();
-    if(segundos > 59) {
-      segundos -= 60;
-      contadorCuenta++;
-    }
-    
-    // Sumamos los minutos
-    int minutos = this.minutos + intervalo.getMinutos() + contadorCuenta;
-    // Reiniciamos el contador
-    contadorCuenta = 0;
-    if (minutos > 59) {
-      minutos -= 60;
-      contadorCuenta++;
-    }
-    
-    // Sumamos las horas
-    int horas = this.horas + intervalo.getHoras() + contadorCuenta;
-    
-    return new IntervaloTiempo(horas, minutos, segundos);
+    return new IntervaloTiempo(this.horas + intervalo.horas, this.minutos + intervalo.minutos, this.segundos + intervalo.segundos);
     
   }
   
   public IntervaloTiempo resta(IntervaloTiempo intervalo) {
     
     // Comprobamos que se pueden restar. Si no pueden, devolvemos un intervalo de tiempo 0.
-    if (this.horas < intervalo.getHoras() || (this.horas == intervalo.getHoras() && this.minutos < intervalo.getMinutos()) 
-        || (this.horas < intervalo.getHoras() && this.minutos == intervalo.getMinutos() && this.segundos == intervalo.getSegundos())){
+    if (this.horas < intervalo.horas || (this.horas == intervalo.horas && this.minutos < intervalo.minutos) 
+        || (this.horas < intervalo.horas && this.minutos == intervalo.minutos && this.segundos == intervalo.segundos)){
       
       System.out.println("No se pueden restar los intervalos indicados puesto que no puede haber un intervalo de tiempo negativo."
-          + " Devolvemos el intervalo por defecto: 0H 0M 0S");
-      return new IntervaloTiempo(0,0,0);
+          + " Devolvemos el intervalo por defecto: null");
+      return null;
     }else {
       // Si se pueden restar hay que considerar los casos en los que haya que mover dígitos para restar segundos
-      if (this.segundos < intervalo.getSegundos() && this.minutos != 0) {
+      if (this.segundos < intervalo.segundos && this.minutos != 0) {
         minutos--;
         segundos += 60;
 
-      } else if (this.segundos < intervalo.getSegundos() && this.minutos == 0) {
+      } else if (this.segundos < intervalo.segundos && this.minutos == 0) {
         horas--;
         minutos += 59;
         segundos += 60;
       }
       
       // Consideramos los casos para restar los minutos
-      if (this.minutos < intervalo.getMinutos()) {
+      if (this.minutos < intervalo.minutos) {
         horas--;
         minutos += 60;
       }
       
-      int segundos = this.segundos - intervalo.getSegundos();
-      int minutos = this.minutos - intervalo.getMinutos();
-      int horas = this.horas - intervalo.getHoras();
+      int segundos = this.segundos - intervalo.segundos;
+      int minutos = this.minutos - intervalo.minutos;
+      int horas = this.horas - intervalo.horas;
       
       return new IntervaloTiempo(horas, minutos, segundos);
       
     }
     
-  }
-  
-  
-  // Comprobación de horas y minutos
-  private int compruebaMinutosSegundos(int cantidad) {
-    if (cantidad < 0 || cantidad > 59) {
-      cantidad = 0;
-      System.out.println("La cantidad de minutos o segundos no se encuentra en el intervalo. Por defecto, se establecerá en 0.");
-    }
-
-    return cantidad;
-  }
-
-  
-  // Getters de los intervalos
-  
-  public int getHoras() {
-    return horas;
-  }
-
-
-  public int getMinutos() {
-    return minutos;
-  }
-
-
-  public int getSegundos() {
-    return segundos;
   }
   
 }

@@ -52,12 +52,12 @@ public class TarjetaRegalo {
    */
   public TarjetaRegalo fusionaCon(TarjetaRegalo tarjeta) {
     
-    double saldoTarjeta = tarjeta.getSaldo();
+    double saldoTarjeta = tarjeta.saldo;
     
     TarjetaRegalo tarjetaFusionada = new TarjetaRegalo(saldo + saldoTarjeta);
     
     saldo = 0;
-    tarjeta.setSaldo(0);
+    tarjeta.saldo = 0;
     
     return tarjetaFusionada;
   }
@@ -81,17 +81,6 @@ public class TarjetaRegalo {
       identificador += String.valueOf(generador.nextInt(0,10));
     
     return identificador;
-  }
-  
-  // Métodos getter y setter privados de saldo. Usados para fusionar tarjetas.
-  
-  private double getSaldo() {
-    return saldo;
-  }
-
-
-  private void setSaldo(double saldo) {
-    this.saldo = saldo;
   }
   
 }

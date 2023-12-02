@@ -8,23 +8,23 @@ public class Zona {
   /**
    * Número de entradas de una zona
    */
-  private int numEntradas;
+  private int entradasPorVender;
   
   
   // ------------------------------ Bloque de constructores ------------------------------
   
   /**
    * Constructor con un parámetro.
-   * @param numEntradas Define el número de entradas iniciales por vender. Si es erróneo, su valor por defecto será 50.
+   * @param entradasIniciales Define el número de entradas iniciales por vender. Si es erróneo, su valor por defecto será 50.
    */
-  public Zona(int numEntradas) {
+  public Zona(int entradasIniciales) {
     // Consideramos un caso inicial erróneo y ponemos por defecto 50.
-    if (numEntradas < 0) {
+    if (entradasIniciales < 0) {
       System.out.println("El número de entradas iniciales no pueden ser un número negativo. Se establecerá por defecto: 50.");
-      numEntradas = 50;
+      entradasIniciales = 50;
     }
     
-    this.numEntradas = numEntradas;
+    entradasPorVender = entradasIniciales;
 
   }
   
@@ -35,7 +35,7 @@ public class Zona {
    * @return Número de entradas que quedan por vender.
    */
   public int getEntradasPorVender() {
-    return numEntradas;
+    return entradasPorVender;
     
   }
   
@@ -48,8 +48,8 @@ public class Zona {
     
     int entradasVendidas = 0;
     
-    if (entradas <= numEntradas) {
-      numEntradas -= entradas;
+    if (entradas <= entradasPorVender) {
+      entradasPorVender -= entradas;
       entradasVendidas = entradas;
       System.out.println("Venta realizada correctamente.");
     } else
