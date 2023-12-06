@@ -129,6 +129,7 @@ public class Persona {
   * @param nombre El nombre de la persona
   * @param edad La edad de la persona. Debe ser mayor que cero.
   * @param sexo El sexo de la persona. Debe ser 'H' o 'M'.
+  * @throws IllegalArgumentException Si la edad o el sexo son incorrectos.
   */
   public Persona (String nombre, int edad, char sexo) {
     this();
@@ -152,6 +153,7 @@ public class Persona {
    * @param sexo El sexo de la persona. Debe ser 'H' o 'M'.
    * @param peso El peso de la persona. Debe ser mayor que cero. Establecido en kg.
    * @param altura La altura de la persona. Debe ser mayor que cero. Establecido en cm.
+   * @throws IllegalArgumentException Si la edad, el sexo, el peso o la altura son incorrectos.
    */
   public Persona (String nombre, int edad, char sexo, double peso, double altura) {
     this(nombre,edad,sexo);
